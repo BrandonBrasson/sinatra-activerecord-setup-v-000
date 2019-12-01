@@ -1,0 +1,13 @@
+<!-- Story BOOKMARKER HOMEPAGE  -->
+<h1>Welcome to Story Bookmarker</h1>
+<h2><em>New Storys Added Daily</em></h2>
+<!-- Iterate over Story.all to create a list -->
+<% @storys.each do |story| %>
+  <li><h3> <a href="/storys/<%= story.id %>"> <%= story.name %> </a> </h3></li>
+<% end %>
+
+<br> <hr> <br>
+<!-- Links to show User's homepage, and to add a new Story Bookmark  -->
+<a href="/users/<%= @user.id %>/bookmarks"> Go to your Homepage </a>
+<br>
+<a href="/storys/new"> Add Your New Story </a>
