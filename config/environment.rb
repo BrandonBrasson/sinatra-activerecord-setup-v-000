@@ -8,6 +8,6 @@ configure :development do
 end
 
 configure :development do
-  set :database, 'sqlite3:db/dogs.db'
+  set :database, 'sqlite3:db/create_user.db'
 end
 require './app'
