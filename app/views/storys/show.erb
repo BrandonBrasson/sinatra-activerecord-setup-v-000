@@ -1,0 +1,44 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+<!--  USE IN LAYOUT -->
+
+<h1> <%= @story.name %> </h1> <br>
+<p>In this Mystery Readers International finalist for "Best Debut Mystery," criminal defense lawyer Joe Dillard has become jaded over the years as he's tried to balance his career against his conscience. Savvy but cynical, Dillard wants to quit doing criminal defense, but he can't resist the chance to represent someone who might actually be innocent. His drug-addicted sister has just been released from prison and his mother is succumbing to Alzheimer's, but Dillard's commitment to the case never wavers despite the personal troubles and professional demands that threaten to destroy him.</p>
+<br>
+<p>Story Found At:<br>
+<a href="<%= @story.url %>"> <%= @story.url %> </a></p>
+<p> Story Added By: <%= @creator.username %></p>
+<hr>
+<br>
+<% if @user.id == @creator.id %>
+
+  <a href="/storys/<%= @story.id %>/edit">Edit or Delete Story</a>
+
+<% end %>
+<br><br>
+
+<!-- QUESTION: Does it make sense for a user to own a story and be able to unbookmark it?  -->
+
+<% if @user.storys.include?(@story) || @user.bookmarked_storys.include?(@story)%>
+
+  <!-- User method to remove story from bookmarks -->
+
+  <form action="/storys/<%= @story.id %>/remove" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="submit" name="remove_bookmark" value="Remove Bookmark">
+  </form>
+
+<% else %>
+
+<!-- User method to add story to bookmarks -->
+
+  <form action="/storys/<%= @story.id %>/add" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="submit" name="add_bookmark" value="Add Bookmark">
+  </form>
+
+<% end %>
+
+<br><br>
+<a href="/storys">Return to Story Bookmarker Homepage</a>
