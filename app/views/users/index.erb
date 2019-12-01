@@ -1,0 +1,20 @@
+<h1>Welcome to your homepage, <%= @user.username %></h1>
+<h3>Here are the storys you have bookmarked:</h3>
+<ul>
+
+  <% @user.bookmarked_storys.each do |story| %>
+    <li><h3> <a href="/storys/<%= story.id %>"> <%= story.name %> </a> </h3>  </li>
+  <% end %>
+</ul>
+
+<h3>Here are the storys you have created:</h3>
+
+  <% @user.storys.each do |story| %>
+    <li><h3> <a href="/storys/<%= story.id %>"> <%= story.name %> </a> </h3>  </li>
+  <% end %>
+</ul>
+
+<br>
+
+<a href="/storys">Return to Story Bookmarker Homepage</a><br>
+<a href="/storys/new"> Add Your New Story </a>
